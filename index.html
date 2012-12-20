@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Planet-simulator</title>
+        <script src="scripts/libs/stats.js"></script>
+        <script data-main="scripts/main" src="scripts/libs/require-jquery.js"></script>
+        <link rel="stylesheet" href="icons/style.css">
+    </head>
+<style>
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+input {
+    border: 1px solid #c0c0c0;
+    width: 40px;
+    background: rgba(255, 255, 255, 0);
+}
+
+#canvas {
+    margin: auto 0;
+    background: url('background.png');
+}
+#stats {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+#zoomBox {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 2;
+}
+#playBox {
+    position: absolute;
+    width: 46px;
+    bottom: 10px;
+    left: 50%;
+    margin-left: -23px;
+    z-index: 2;
+}
+#settingsBox {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    width: 200px;
+}
+#planetBox {
+    position: absolute;
+    left: 12px;
+    bottom: 12px;
+}
+#planetBox .box {
+    font-size: 18px;
+    padding: 8px 9px;
+    border-bottom: 0px;
+    border-radius: 8px 8px 0px 0px;
+    box-shadow: 0px 0px 3px #444;
+    background: linear-gradient(to bottom, #FFF, rgba(255,255,255,0.5));
+    background: -webkit-linear-gradient(top, #FFF, rgba(255,255,255,0.5));
+}
+
+#planetBox .h-btn-group .button:first-child {
+    border-radius: 0px 0px 0px 8px;
+}
+#planetBox .h-btn-group .button:last-child {
+    border-radius: 0px 0px 8px 0px;
+}
+#addPlanet {
+    background: rgba(20, 200, 20, 0.3);
+}
+#removePlanet {
+    background: rgba(200, 60, 60, 0.3);
+}
+
+.v-btn-group .button {
+    margin: 0px;
+    border-radius: 0px 0px 0px 0px;
+    border-width: 0px 1px 1px 1px;
+    background: linear-gradient(to right, #FFF, rgba(255,255,255,0.5));
+    background: -webkit-linear-gradient(right, #FFF, rgba(255,255,255,0.5));
+}
+
+.v-btn-group .button:first-child {
+    border-radius: 8px 8px 0px 0px;
+}
+
+.v-btn-group .button:last-child {
+    border-radius: 0px 0px 8px 8px;
+    margin-bottom: 15px;
+}
+
+.button {
+    font-size: 18px;
+    padding: 5px 10px 3px 10px;
+    margin: 2px;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0px 0px 3px #444;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    background: linear-gradient(to bottom, #FFF, rgba(255,255,255,0.5));
+    background: -webkit-linear-gradient(top, #FFF, rgba(255,255,255,0.5));
+}
+.large-btn {
+    font-size: 30px;
+    padding: 5px 10px 3px 10px;
+}
+.aw-icon {
+    position: relative;
+    top: 0.2em;
+    padding: 0px 2px 0px 1px;
+}
+.button:hover {
+    box-shadow: 0px 0px 5px #000;
+}
+.button:active {
+    color: #333;
+    box-shadow: inset 0px 0px 3px 0px #444;
+}
+.header-button {
+    font-weight: bold;
+    cursor: default;
+}
+.header-button:hover {
+    box-shadow: 0px 0px 3px #444;
+}
+.header-button:active {
+    color: #000;
+    box-shadow: 0px 0px 3px #444;
+}
+
+.h-btn-group .button {
+    margin: 0px;
+    border-radius: 0px 0px 0px 0px;
+    border-width: 1px 1px 1px 0px;
+    float: left;
+    text-align: center;
+    display: inline-block;
+}
+
+.h-btn-group .large-btn {
+    margin: 0px;
+    padding: 4px 16px 3px 16px;
+    border-radius: 0px 0px 0px 0px;
+    border-width: 1px 1px 1px 0px;
+    float: left;
+    width: 20px;
+    text-align: center;
+    display: inline-block;
+}
+.h-btn-group .button:first-child {
+    border-radius: 8px 0px 0px 8px;
+    border-width: 1px 1px 1px 1px;
+}
+.h-btn-group .button:last-child {
+    border-radius: 0px 8px 8px 0px;
+}
+.check-btn {
+    text-align: left;
+}
+.btn-checked {
+    box-shadow: inset 0px 0px 4px 0px #222;
+    color: #333;
+}
+.btn-checked:hover {
+    box-shadow: inset 0px 0px 3px 0px #444;
+}
+tr > td:first-child { 
+    text-align: right;
+}
+</style>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+<div id="zoomBox" class="v-btn-group">
+<div id="zoomIn" class="button large-btn"><i class="icon-zoom-in aw-icon"></i></div>
+    <div id="zoomDefault" class="button large-btn"><i class="icon-untitled-2 aw-icon"></i></div>
+    <div id="zoomOut" class="button large-btn"><i class="icon-zoom-out aw-icon"></i></div>
+</div>
+<div id="playBox">
+    <div id="playPause" class="button large-btn"> <i class="icon-play aw-icon"></i></div>
+</div>
+<div id="settingsBox">
+    <div class="v-btn-group">
+        <div class="button header-button"><i class="icon-untitled-3 aw-icon"></i> Vis</div>
+        <div class="check-btn button btn-checked" id="showVelocity"><i class="icon-meter-fast"></i> Hastighed</div>
+        <div class="check-btn button" id="showForce"><i class="icon-tab"></i> Kraftpile</div>
+        <div class="check-btn button" id="showTrail"><i class="icon-track aw-icon"></i> Spor</div>
+        <div class="check-btn button btn-checked" id="showCenterOfMass"><i class="icon-track aw-icon"></i> Massemidtpunkt</div>
+        <div class="check-btn button" id="showKeplers2"><i class="icon-track aw-icon"></i> Overstrøget areal</div>
+    </div>
+    <div class="v-btn-group">
+        <div class="button header-button"><i class="icon-stats-up"></i> Integration</div>
+        <div class="radio-btn button" id="eulerInt"><i class="icon-power"></i> Euler</div>
+        <div class="radio-btn button" id="midpointInt"><i class="icon-power-2"></i> Midpoint</div>
+        <div class="radio-btn button btn-checked" id="rk4Int"><i class="icon-lightning"></i> RK4</div>
+    </div>
+</div>
+<div id="planetBox">
+<div class="box">
+    <table>
+      <tr>
+        <td>
+          <b>Position <i class="icon-position aw-icon"></i></b>
+        </td>
+        <td>
+          (<input id="posx" type="text" size="5">,<input id="posy" type="text" size="5">)
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Hastighed <i class="icon-dashboard"></i></b>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>
+          størrelse <i class="icon-arrow-up-right"></i>
+        </td>
+        <td>
+          <input id="velsize" type="text" style="width:95px">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          retning <i class="icon-compass"></i>
+        </td>
+        <td>
+          <input id="velangle" type="text" style="width:95px">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Masse <i class="icon-database"></i></b>
+        </td>
+        <td>
+          <input id="mass" type="text" style="width:95px">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Areal <i class="icon-database"></i></b>
+        </td>
+        <td>
+          <input id="sweepArea" type="text" style="width:95px">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Omløbstid <i class="icon-loading"></i></b>
+        </td>
+        <td>
+          <input id="period" type="text" style="width:95px">
+        </td>
+      </tr>
+    </table>
+</div>
+    <div class="h-btn-group">
+        <div class="button" id="removePlanet"><i class="icon-remove"></i> Slet planet</div>
+        <div class="button" id="addPlanet"><i class="icon-plus"></i> Tilføj planet</div>
+    </div>
+</div>
+</body>
+</html>
