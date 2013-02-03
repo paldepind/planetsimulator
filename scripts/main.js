@@ -229,7 +229,6 @@ function update() {
         }
     }
     
-    stats.update();
     window.requestAnimationFrame(update);
 }
 
