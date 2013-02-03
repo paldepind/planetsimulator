@@ -8,7 +8,6 @@ define({
     integrator: "rk4",
     selected: {},
     showCenterOfMass: true,
-    history: [],
     showKeplers2: false,
     keplers2Time: 30,
 });

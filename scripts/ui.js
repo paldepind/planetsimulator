@@ -39,18 +39,25 @@ define(["jquery", "settings", "planet", "planets"], function($, settings, planet
     $('#playPause').click(function () {
         if(settings.pause) {
             settings.pause = false;
-            $('i', this).addClass('icon-pause').
-                         removeClass('icon-play');
+            $('i', this).addClass('icon-pause')
+                        .removeClass('icon-play');
+            planets.play();
         } else {
             settings.pause = true;
-            $('i', this).addClass('icon-play').
-                         removeClass('icon-pause');
-            //settings.history.push(JSON.parse(JSON.stringify(planets)));
+            $('i', this).addClass('icon-play')
+                        .removeClass('icon-pause');
         }
     });
-    $('#stepBackward').click(function () {
-        planets.length = 0;
-        $.extend(true, planets, settings.history.pop())
+    $('#prev').click(function () {
+        if (settings.pause) {
+            planets.go(-1);
+        }
+    });
+
+    $('#next').click(function () {
+        if (settings.pause) {
+            planets.go(1);
+        }
     });
 
     $('#showTrail').click(function() {

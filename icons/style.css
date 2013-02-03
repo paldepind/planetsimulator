@@ -1,17 +1,17 @@
 @font-face {
-	font-family: 'icons';
-	src:url('fonts/icons.eot');
-	src:url('fonts/icons.eot?#iefix') format('embedded-opentype'),
-		url('fonts/icons.svg#icons') format('svg'),
-		url('fonts/icons.woff') format('woff'),
-		url('fonts/icons.ttf') format('truetype');
+	font-family: 'icomoon';
+	src:url('fonts/icomoon.eot');
+	src:url('fonts/icomoon.eot?#iefix') format('embedded-opentype'),
+		url('fonts/icomoon.woff') format('woff'),
+		url('fonts/icomoon.ttf') format('truetype'),
+		url('fonts/icomoon.svg#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
 
 /* Use the following CSS code if you want to use data attributes for inserting your icons */
 [data-icon]:before {
-	font-family: 'icons';
+	font-family: 'icomoon';
 	content: attr(data-icon);
 	speak: none;
 	font-weight: normal;
@@ -20,92 +20,106 @@
 }
 
 /* Use the following CSS code if you want to have a class per icon */
-[class^="icon-"]:before, [class*=" icon-"]:before {
-	font-family: 'icons';
-	font-style: normal;
+/*
+Instead of a list of all class selectors,
+you can use the generic selector below, but it's slower:
+[class*="icon-"]:before {
+*/
+.icon-remove:before, .icon-plus:before, .icon-pause:before, .icon-untitled:before, .icon-untitled-2:before, .icon-position:before, .icon-zoom-out:before, .icon-zoom-in:before, .icon-dist:before, .icon-untitled-3:before, .icon-track:before, .icon-next:before, .icon-play:before, .icon-prev:before, .icon-arrow-up-right:before, .icon-database:before, .icon-loading:before, .icon-calendar:before, .icon-dashboard:before, .icon-bolt:before, .icon-lightning:before, .icon-power:before, .icon-power-2:before, .icon-tab:before, .icon-compass:before, .icon-meter-fast:before, .icon-stats-up:before, .icon-radio-checked:before, .icon-radio-unchecked:before, .icon-pie:before {
+	font-family: 'icomoon';
 	speak: none;
+	font-style: normal;
 	font-weight: normal;
 	line-height: 1;
 	-webkit-font-smoothing: antialiased;
 }
-.icon-stats-up:before {
-	content: "\67";
-}
-.icon-meter-fast:before {
-	content: "\73";
-}
-.icon-compass:before {
-	content: "\64";
-}
-.icon-tab:before {
-	content: "\61";
-}
-.icon-power:before {
-	content: "\31";
-}
-.icon-power-2:before {
-	content: "\32";
-}
-.icon-lightning:before {
-	content: "\33";
-}
-.icon-bolt:before {
-	content: "\72";
-}
-.icon-dashboard:before {
-	content: "\37";
-}
-.icon-calendar:before {
-	content: "\63";
-}
-.icon-loading:before {
-	content: "\30";
-}
-.icon-database:before {
-	content: "\6d";
-}
-.icon-arrow-up-right:before {
-	content: "\36";
-}
-.icon-prev:before {
-	content: "\f048";
-}
-.icon-play:before {
-	content: "\f04b";
-}
-.icon-next:before {
-	content: "\f051";
-}
-.icon-track:before {
-	content: "\f018";
-}
-.icon-untitled:before {
-	content: "\f01e";
-}
-.icon-dist:before {
-	content: "\f065";
-}
-.icon-zoom-in:before {
-	content: "\f00e";
-}
-.icon-zoom-out:before {
-	content: "\f010";
-}
-.icon-position:before {
-	content: "\f041";
-}
-.icon-untitled-2:before {
-	content: "\f002";
-}
-.icon-untitled-3:before {
-	content: "\f06e";
-}
-.icon-pause:before {
-	content: "\f04c";
+.icon-remove:before {
+	content: "\e000";
 }
 .icon-plus:before {
 	content: "\e004";
 }
-.icon-remove:before {
-	content: "\e000";
+.icon-pause:before {
+	content: "\f04c";
+}
+.icon-untitled:before {
+	content: "\f06e";
+}
+.icon-untitled-2:before {
+	content: "\f002";
+}
+.icon-position:before {
+	content: "\f041";
+}
+.icon-zoom-out:before {
+	content: "\f010";
+}
+.icon-zoom-in:before {
+	content: "\f00e";
+}
+.icon-dist:before {
+	content: "\f065";
+}
+.icon-untitled-3:before {
+	content: "\f01e";
+}
+.icon-track:before {
+	content: "\f018";
+}
+.icon-next:before {
+	content: "\f051";
+}
+.icon-play:before {
+	content: "\f04b";
+}
+.icon-prev:before {
+	content: "\f048";
+}
+.icon-arrow-up-right:before {
+	content: "\36";
+}
+.icon-database:before {
+	content: "\6d";
+}
+.icon-loading:before {
+	content: "\30";
+}
+.icon-calendar:before {
+	content: "\63";
+}
+.icon-dashboard:before {
+	content: "\37";
+}
+.icon-bolt:before {
+	content: "\72";
+}
+.icon-lightning:before {
+	content: "\33";
+}
+.icon-power:before {
+	content: "\32";
+}
+.icon-power-2:before {
+	content: "\31";
+}
+.icon-tab:before {
+	content: "\61";
+}
+.icon-compass:before {
+	content: "\64";
+}
+.icon-meter-fast:before {
+	content: "\73";
+}
+.icon-stats-up:before {
+	content: "\67";
+}
+.icon-radio-checked:before {
+	content: "\21";
+}
+.icon-radio-unchecked:before {
+	content: "\22";
+}
+.icon-pie:before {
+	content: "\23";
 }

@@ -136,7 +136,6 @@ function update() {
     render.clear();
     ui.updateZoom();
     
-    
     if (settings.selected.planet && !settings.pause) {
         ui.updatePlanetBox(settings.selected.planet);
     }

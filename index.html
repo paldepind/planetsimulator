@@ -38,17 +38,17 @@ input {
 }
 #playBox {
     position: absolute;
-    width: 46px;
+    width: 156px;
     bottom: 10px;
     left: 50%;
-    margin-left: -23px;
+    margin-left: -78px;
     z-index: 2;
 }
 #settingsBox {
     position: absolute;
     right: 12px;
     top: 12px;
-    width: 200px;
+    width: 210px;
 }
 #planetBox {
     position: absolute;
@@ -60,7 +60,7 @@ input {
     padding: 8px 9px;
     border-bottom: 0px;
     border-radius: 8px 8px 0px 0px;
-    box-shadow: 0px 0px 3px #444;
+    box-shadow: 0px 0px 4px #aaa;
     background: linear-gradient(to bottom, #FFF, rgba(255,255,255,0.5));
     background: -webkit-linear-gradient(top, #FFF, rgba(255,255,255,0.5));
 }
@@ -101,7 +101,7 @@ input {
     margin: 2px;
     border-radius: 8px;
     cursor: pointer;
-    box-shadow: 0px 0px 3px #444;
+    box-shadow: 0px 0px 4px #aaa;
     user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -129,11 +129,11 @@ input {
     cursor: default;
 }
 .header-button:hover {
-    box-shadow: 0px 0px 3px #444;
+    box-shadow: 0px 0px 4px #aaa;
 }
 .header-button:active {
     color: #000;
-    box-shadow: 0px 0px 3px #444;
+    box-shadow: 0px 0px 4px #aaa;
 }
 
 .h-btn-group .button {
@@ -166,11 +166,11 @@ input {
     text-align: left;
 }
 .btn-checked {
-    box-shadow: inset 0px 0px 4px 0px #222;
+    box-shadow: inset 0px 0px 5px 0px #555;
     color: #333;
 }
 .btn-checked:hover {
-    box-shadow: inset 0px 0px 3px 0px #444;
+    box-shadow: inset 0px 0px 4px 0px #777;
 }
 tr > td:first-child { 
     text-align: right;
@@ -184,22 +184,24 @@ tr > td:first-child {
     <div id="zoomDefault" class="button large-btn"><i class="icon-untitled-2 aw-icon"></i></div>
     <div id="zoomOut" class="button large-btn"><i class="icon-zoom-out aw-icon"></i></div>
 </div>
-<div id="playBox">
+<div id="playBox" class="h-btn-group">
+    <div id="prev" class="button large-btn"> <i class="icon-prev aw-icon"></i></div>
     <div id="playPause" class="button large-btn"> <i class="icon-play aw-icon"></i></div>
+    <div id="next" class="button large-btn"> <i class="icon-next aw-icon"></i></div>
 </div>
 <div id="settingsBox">
     <div class="v-btn-group">
-        <div class="button header-button"><i class="icon-untitled-3 aw-icon"></i> Vis</div>
+        <div class="button header-button"><i class="icon-untitled aw-icon"></i> Vis</div>
         <div class="check-btn button btn-checked" id="showVelocity"><i class="icon-meter-fast"></i> Hastighed</div>
         <div class="check-btn button" id="showForce"><i class="icon-tab"></i> Kraftpile</div>
         <div class="check-btn button" id="showTrail"><i class="icon-track aw-icon"></i> Spor</div>
-        <div class="check-btn button btn-checked" id="showCenterOfMass"><i class="icon-track aw-icon"></i> Massemidtpunkt</div>
-        <div class="check-btn button" id="showKeplers2"><i class="icon-track aw-icon"></i> Overstrøget areal</div>
+        <div class="check-btn button btn-checked" id="showCenterOfMass"><i class="icon-radio-checked"></i> Massemidtpunkt</div>
+        <div class="check-btn button" id="showKeplers2"><i class="icon-pie"></i> Overstrøget areal</div>
     </div>
     <div class="v-btn-group">
         <div class="button header-button"><i class="icon-stats-up"></i> Integration</div>
-        <div class="radio-btn button" id="eulerInt"><i class="icon-power"></i> Euler</div>
-        <div class="radio-btn button" id="midpointInt"><i class="icon-power-2"></i> Midpoint</div>
+        <div class="radio-btn button" id="eulerInt"><i class="icon-power-2"></i> Euler</div>
+        <div class="radio-btn button" id="midpointInt"><i class="icon-power"></i> Midpoint</div>
         <div class="radio-btn button btn-checked" id="rk4Int"><i class="icon-lightning"></i> RK4</div>
     </div>
 </div>
@@ -246,7 +248,7 @@ tr > td:first-child {
       </tr>
       <tr>
         <td>
-          <b>Areal <i class="icon-database"></i></b>
+          <b>Areal <i class="icon-radio-unchecked"></i></b>
         </td>
         <td>
           <input id="sweepArea" type="text" style="width:95px">
