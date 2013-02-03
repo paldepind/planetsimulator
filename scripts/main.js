@@ -126,8 +126,8 @@ function init() {
     settings.selected.planet = planets[1];
     ui.updatePlanetBox(settings.selected.planet);
 
-    stats = new Stats();
-    document.body.appendChild(stats.domElement);
+    //stats = new Stats();
+    //document.body.appendChild(stats.domElement);
 
     update();
 }
